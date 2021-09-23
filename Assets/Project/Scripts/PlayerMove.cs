@@ -39,13 +39,13 @@ public class PlayerMove : MonoBehaviourPunCallbacks
 
             if (isboost == true)
             {
-                rb.AddForce(velocity * 2);
+                rb.AddForce(velocity * 3);
 
                 //rb.AddForce(x, 0, z+10);
             }
             else
             {
-                rb.AddForce(velocity);
+                rb.AddForce(velocity*1.5f);
                 //rb.AddForce(x, 0, z);
             }
             if (rb.velocity.magnitude > LimitSpeed)
