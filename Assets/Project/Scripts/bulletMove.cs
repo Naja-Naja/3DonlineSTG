@@ -31,7 +31,7 @@ public class bulletMove : MonoBehaviour
     {
         var tmp = Instantiate(fire, this.transform);
         tmp.transform.SetParent(transform.root);
-        Debug.Log("hit");
+        //Debug.Log("hit");
         Destroy(this.gameObject);
     }
 }
