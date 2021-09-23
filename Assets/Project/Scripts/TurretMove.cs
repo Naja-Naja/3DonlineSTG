@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class TurretMove : MonoBehaviour
+public class TurretMove : MonoBehaviourPunCallbacks
 {
     // Start is called before the first frame update
     void Start()
@@ -13,6 +14,9 @@ public class TurretMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.LookAt(Camera.main.transform);
+        if (photonView.IsMine)
+        {
+            this.transform.LookAt(Camera.main.transform);
+        }
     }
 }
