@@ -22,7 +22,7 @@ public class logintest : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         // ランダムな座標に自身のアバター（ネットワークオブジェクト）を生成する
-        var position = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f));
-        PhotonNetwork.Instantiate("Player", position, Quaternion.identity);
+        //var position = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f));
+        PhotonNetwork.Instantiate("Player",this.transform.position, Quaternion.identity);
     }
 }
