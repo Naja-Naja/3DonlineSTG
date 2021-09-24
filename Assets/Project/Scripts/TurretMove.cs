@@ -5,15 +5,9 @@ using Photon.Pun;
 
 public class TurretMove : MonoBehaviourPunCallbacks
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
+        //–C‘ä‚ªƒJƒƒ‰‚ÌŒü‚¢‚Ä‚é•ûŒü‚ğŒü‚­
         if (photonView.IsMine)
         {
             this.transform.LookAt(Camera.main.transform);
