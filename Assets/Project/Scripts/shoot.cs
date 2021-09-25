@@ -37,7 +37,6 @@ public class shoot : MonoBehaviourPunCallbacks
 
             //RPCを用いてプレイヤー間で発射タイミングと方向を同期する
             photonView.RPC(nameof(shot), RpcTarget.All, bulletVec);
-
             //発射間隔の時間だけ待機する
             yield return new WaitForSeconds(1f);
         }
