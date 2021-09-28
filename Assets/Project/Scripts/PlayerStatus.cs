@@ -1,27 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using UnityEngine.VFX;
 
-public class PlayerStatus : MonoBehaviour
+public class PlayerStatus : MonoBehaviourPunCallbacks
 {
-    [SerializeField] FloatVariable ScriptableHP;
-    // Start is called before the first frame update
+    [SerializeField] FloatVariable HP;
+    [SerializeField] PlayerEN EN;
     void Start()
     {
-        ScriptableHP.init();
-    }
-
-    //private void FixedUpdate()
-    //{
-    //    GetDamage(1);
-    //}
-
-    void GetDamage(float damage)
-    {
-        ScriptableHP.RuntimeValue = ScriptableHP.RuntimeValue - damage;
-        if (ScriptableHP.RuntimeValue < 0)
+        if (photonView.IsMine)
         {
-            ScriptableHP.RuntimeValue = 0;
+            HP.init();
+            EN.init();
+        }
+    }
+    void Update()
+    {
+        if (photonView.IsMine)
+        {
+            if (EN.RuntimeValue <= 0)
+            {
+                EN.RuntimeValue = 0;
+                EN.OverHeat = true;
+                Debug.Log("overheat");
+            }
+            else if (EN.RuntimeValue >= EN.Value)
+            {
+                EN.OverHeat = false;
+                EN.RuntimeValue = EN.Value;
+            }
+        }
+    }
+    void FixedUpdate()
+    {
+        if (photonView.IsMine)
+        {
+            if (EN.OverHeat)
+            {
+                EN.RuntimeValue = EN.RuntimeValue + 2;
+            }
+            //ÉGÉlÉãÉMÅ[âÒïú
+            else if (EN.RuntimeValue < EN.Value)
+            {
+                EN.RuntimeValue = EN.RuntimeValue + 1;
+            }
         }
     }
 }

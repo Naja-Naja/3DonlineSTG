@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviourPunCallbacks
     public float LimitSpeed;
     Quaternion horizontalrotation;
     Vector3 velocity;
+    [SerializeField] PlayerEN EN;
+
     void FixedUpdate()
     {
         if (photonView.IsMine)
@@ -28,11 +30,13 @@ public class PlayerMove : MonoBehaviourPunCallbacks
             {
                 //ブーストありの移動
                 rb.AddForce(velocity * 3);
+                EN.RuntimeValue = EN.RuntimeValue - 2;
             }
             else
             {
                 //ブーストなしの移動
                 rb.AddForce(velocity*1.5f);
+                
             }
 
             //最高速度制限
@@ -46,6 +50,12 @@ public class PlayerMove : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
+            if (EN.OverHeat == true)
+            {
+                isboost = false;
+                boost.SetActive(false);
+                return;
+            }
             //多分VFXをusingしてOnPlayとOnStop使った方がいい
             if (Input.GetKey(KeyCode.Space) == true)
             {

@@ -16,7 +16,7 @@ public class HPBar : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         HPImage.fillAmount = ScriptableHP.RuntimeValue / ScriptableHP.Value;
 
