@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3bcc9f0f6ff1d4d885a583620af434, type: 3}
+  m_Name: Weapon1
+  m_EditorClassIdentifier: 
+  Name: TestWeapon
+  weaponTimeManager: {fileID: 2383532073713132308, guid: baac62bd0737b5b4a87dee29b272fe08, type: 3}
+  bullet: {fileID: 7590159455778916453, guid: 530e1ad9e61336d42bfcb21d1cee4a2a, type: 3}
+  reloadabe: 1
+  reloading: 0
+  reloadtime: 1
+  fireRate: 0
+  numberofBullet: 1
+  passiveWeapon: 0
+  changetime: 0
+  pargable: 0
+  weaponweight: 0
