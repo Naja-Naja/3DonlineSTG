@@ -53,22 +53,25 @@ public class shoot : MonoBehaviourPunCallbacks
     //}
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (photonView.IsMine)
         {
-            Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2);
-            Ray ray = Camera.main.ScreenPointToRay(center);
-            RaycastHit hit;
-            Physics.Raycast(ray, out hit, Mathf.Infinity);
-            //Debug.DrawRay(ray.origin, ray.direction * 100, Color.green, 5, false);
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2);
+                Ray ray = Camera.main.ScreenPointToRay(center);
+                RaycastHit hit;
+                Physics.Raycast(ray, out hit, Mathf.Infinity);
+                //Debug.DrawRay(ray.origin, ray.direction * 100, Color.green, 5, false);
 
-            //プレイヤーからRayの当たった座標へのVector3を作成
-            Vector3 playerVec = this.transform.position;
-            Vector3 targetVec = hit.point;
-            Vector3 bulletVec = targetVec - playerVec;
-            //Debug.Log("playerVec=" + playerVec + "hit.point=" + hit.point);
-            if (weapon.Shot() == null) { return; }
-            //RPCを用いてプレイヤー間で発射タイミングと方向を同期する
-            photonView.RPC(nameof(shot), RpcTarget.All, bulletVec, playernum);
+                //プレイヤーからRayの当たった座標へのVector3を作成
+                Vector3 playerVec = this.transform.position;
+                Vector3 targetVec = hit.point;
+                Vector3 bulletVec = targetVec - playerVec;
+                //Debug.Log("playerVec=" + playerVec + "hit.point=" + hit.point);
+                if (weapon.Shot() == null) { return; }
+                //RPCを用いてプレイヤー間で発射タイミングと方向を同期する
+                photonView.RPC(nameof(shot), RpcTarget.All, bulletVec, playernum);
+            }
         }
     }
     //射撃同期の関数

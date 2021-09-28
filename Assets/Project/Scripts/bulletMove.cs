@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class bulletMove : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class bulletMove : MonoBehaviour
     Vector3 target;
     GameObject effectmother;
     [SerializeField] GameObject fire;
+    [SerializeField] VisualEffect fireEffect;
     private int playernum = 0;
     public float damage = 50;
     // Start is called before the first frame update
@@ -39,8 +41,11 @@ public class bulletMove : MonoBehaviour
                 idamage.AddDamage(damage);
             }
         }
-        var tmp = Instantiate(fire, this.transform);
-        tmp.transform.SetParent(effectmother.transform);
+        //着弾のエフェクトはなんかバグの温床なので一旦オミット
+        //var tmp = Instantiate(fire, this.transform);
+        //fire.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+        //fireEffect.SendEvent("OnPlay");
+        //tmp.transform.SetParent(effectmother.transform);//ここでなんかエラーでるけどなんで？
         Destroy(this.gameObject);
     }
 }

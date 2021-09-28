@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: {fileID: 9151932087037701324, guid: 3561fd3df254f014eb569f36d58cbd17, type: 3}
+  fireEffect: {fileID: 1008206112039044257, guid: 3561fd3df254f014eb569f36d58cbd17, type: 3}
   damage: 50
 --- !u!54 &5918225817448798537
 Rigidbody:

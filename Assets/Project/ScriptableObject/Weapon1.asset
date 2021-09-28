@@ -17,10 +17,10 @@ MonoBehaviour:
   bullet: {fileID: 7590159455778916453, guid: 530e1ad9e61336d42bfcb21d1cee4a2a, type: 3}
   reloadabe: 1
   reloading: 0
-  reloadtime: 1
-  fireRate: 0
-  numberofBullet: 1
+  reloadtime: 2
+  fireRate: 0.1
+  numberofBullet: 5
   passiveWeapon: 0
-  changetime: 0
+  changetime: 1
   pargable: 0
   weaponweight: 0

@@ -15,6 +15,8 @@ public class weapon : ScriptableObject
     public bool reloading = false; 
     public float reloadtime = 1;
     public float fireRate;
+    [System.NonSerialized]
+    public bool readyNextBullet = true;
     public float numberofBullet = 1;
     [System.NonSerialized]
     public float RuntimeNumberofBullet = 0;
@@ -41,13 +43,27 @@ public class weapon : ScriptableObject
     public GameObject Shot()
     {
         Debug.Log("shotcall");
-        if (reloading/*諸々の条件*/)
-        {
-            
+        //射撃ができない諸々の条件
+        if (reloading)
+        {    
             return null;
         }
-        reloading = true;
-        TimeManager.reload(reloadtime);
+        if (readyNextBullet==false)
+        {
+            return null;
+        }
+        RuntimeNumberofBullet--;
+        readyNextBullet = false;
+        TimeManager.nextbullet(fireRate);
+
+        //弾が0になったならリロード
+        if (RuntimeNumberofBullet <= 0)
+        {
+            reloading = true;
+            TimeManager.reload(reloadtime);
+        }
+
+        //弾を返す
         Debug.Log("shot!!");
         return bullet;
     }
