@@ -582,6 +582,7 @@ MonoBehaviour:
   cameraobj: {fileID: 0}
   fire: {fileID: 4838731856386982097}
   weapon: {fileID: 11400000, guid: b03aac835ed1f6e48be0a99bc61ecf90, type: 2}
+  weaponflame: {fileID: 11400000, guid: d65ec9cf7f6be5f4fbc4414acd316dc5, type: 2}
 --- !u!114 &4046398436104615117
 MonoBehaviour:
   m_ObjectHideFlags: 0

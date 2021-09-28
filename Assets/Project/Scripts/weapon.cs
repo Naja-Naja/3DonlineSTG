@@ -7,10 +7,15 @@ public class weapon : ScriptableObject
 {
 
     //ŽÀ‘•‚ªŒˆ‚Ü‚ç‚ñ‚©‚ç‘S•”public‚¾‚¯‚ÇŒÅ‚Ü‚Á‚Ä‚«‚½‚ç[SerializedField]‚É•Ï‚¦‚é
+    public int weaponID = 0;
     public string Name = "TestWeapon";
+    public Sprite icon = null;
     public GameObject weaponTimeManager = null;
     private WeaponTimeManager TimeManager = null;
     public GameObject bullet = null;
+    public float damage = 10;
+    public float speed = 2500;
+    public float lifetime = 10;
     public bool reloadabe = true;
     public bool reloading = false; 
     public float reloadtime = 1;

@@ -9,50 +9,25 @@ public class shoot : MonoBehaviourPunCallbacks
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject cameraobj;
     [SerializeField] VisualEffect fire;
-    [SerializeField] weapon weapon;
+    [SerializeField] weapon weapon;//ここをweaponflameにする
+    [SerializeField] weaponflame weaponflame;
+    //[SerializeField] float scroll;
     private int playernum;
     void Start()
     {
         if (photonView.IsMine)
         {
-            weapon.init();
-            //StartCoroutine("bulletshoot");
+            for (int i = 0; i < weaponflame.Equipment.Count; i++)
+            {
+                weaponflame.Equipment[i].init();
+            }
             fire.Stop();
             playernum = PhotonNetwork.LocalPlayer.ActorNumber;
         }
     }
-    //IEnumerator bulletshoot()
-    //{
-
-    //    while (true)
-    //    {
-    //        if (Input.GetMouseButton(0))
-    //        {
-    //            //カメラの中心から奥へのレイを作成して発射
-    //            //TODO raycastが自分にも当たってるっぽいからそのうちレイヤー付けましょう
-    //            Vector3 center = new Vector3(Screen.width / 2, Screen.height / 2);
-    //            Ray ray = Camera.main.ScreenPointToRay(center);
-    //            RaycastHit hit;
-    //            Physics.Raycast(ray, out hit, Mathf.Infinity);
-    //            //Debug.DrawRay(ray.origin, ray.direction * 100, Color.green, 5, false);
-
-    //            //プレイヤーからRayの当たった座標へのVector3を作成
-    //            Vector3 playerVec = this.transform.position;
-    //            Vector3 targetVec = hit.point;
-    //            Vector3 bulletVec = targetVec - playerVec;
-    //            //Debug.Log("playerVec=" + playerVec + "hit.point=" + hit.point);
-
-    //            //RPCを用いてプレイヤー間で発射タイミングと方向を同期する
-    //            photonView.RPC(nameof(shot), RpcTarget.All, bulletVec, playernum);
-    //            //発射間隔の時間だけ待機する
-    //            yield return new WaitForSeconds(1f);
-    //        }
-    //        yield return null;
-    //    }
-
-    //}
     private void Update()
     {
+        //攻撃系の入力を扱う
         if (photonView.IsMine)
         {
             if (Input.GetMouseButton(0))
@@ -68,21 +43,33 @@ public class shoot : MonoBehaviourPunCallbacks
                 Vector3 targetVec = hit.point;
                 Vector3 bulletVec = targetVec - playerVec;
                 //Debug.Log("playerVec=" + playerVec + "hit.point=" + hit.point);
-                if (weapon.Shot() == null) { return; }
+                //if (weapon.Shot() == null) { return; }
+                if (weaponflame.Equipment[weaponflame.choiceWeapon].Shot() == null) { return; }
                 //RPCを用いてプレイヤー間で発射タイミングと方向を同期する
-                photonView.RPC(nameof(shot), RpcTarget.All, bulletVec, playernum);
+                photonView.RPC(nameof(shot), RpcTarget.All, bulletVec, playernum,weaponflame.choiceWeapon);
             }
+        }
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            weaponflame.weaponchange(-1);
+            Debug.Log("down");
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            weaponflame.weaponchange(1);
+            Debug.Log("up");
         }
     }
     //射撃同期の関数
     [PunRPC]
-    private void shot(Vector3 target,int playernumber)
+    private void shot(Vector3 target, int playernumber, int weaponID)
     {
         //弾の発射処理
-        var bulletobj = Instantiate(bullet, this.transform);
+        var bulletobj = Instantiate(weaponflame.Equipment[weaponID].bullet, this.transform);
         bulletobj.transform.Rotate(new Vector3(1, 0, 0), 90);//TODOあんまうまくいってない気がする
         bulletobj.transform.parent = null;
         fire.SendEvent("OnPlay");
-        bulletobj.GetComponent<bulletMove>().SetTargetPosition(target,playernumber);
+        bulletobj.GetComponent<bulletMove>().SetTargetPosition(target, playernumber, weaponID);
     }
 }

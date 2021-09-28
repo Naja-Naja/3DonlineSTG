@@ -6,9 +6,11 @@ using System.Text;
 
 public class weaponUI : MonoBehaviour
 {
-    [SerializeField] weapon weapon;
+    weapon weapon;
+    [SerializeField] weaponflame weaponflame;
     [SerializeField] Image bulletImage;
-    [SerializeField] Text text;
+    [SerializeField] Text bullettext;
+    [SerializeField] Text weaponname;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +20,15 @@ public class weaponUI : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        
+        weapon = weaponflame.Equipment[weaponflame.choiceWeapon];
+        weaponname.text = weapon.Name;
         bulletImage.fillAmount = weapon.RuntimeNumberofBullet / weapon.numberofBullet;
-
+        if (weapon.reloading == true)
+        {
+            bullettext.text = "Reloading. . .";
+            return;
+        }
         //文字列結合は重いらしいので今後負荷チェックしたい
         string str1 = weapon.RuntimeNumberofBullet.ToString();
         string str2 = "/";
@@ -29,6 +38,6 @@ public class weaponUI : MonoBehaviour
         sb.Append(str2);
         sb.Append(str3);
         string result = sb.ToString();
-        text.text = result;
+        bullettext.text = result;
     }
 }
