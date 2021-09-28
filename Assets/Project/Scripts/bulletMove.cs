@@ -6,24 +6,26 @@ public class bulletMove : MonoBehaviour
 {
     Rigidbody Rigidbody;
     Vector3 target;
-    GameObject effectmother;
-    [SerializeField] GameObject fire;
     private int playernum = 0;
     public float damage = 50;
-    // Start is called before the first frame update
-    void Start()
-    {
-        //AddForceでtargetに向かって飛ぶ
-        Rigidbody = this.GetComponent<Rigidbody>();
-        Rigidbody.AddForce(target.normalized * 2500);
-
-        effectmother = GameObject.Find("bulletmother");
-    }
+    float lifetime = 0;
+    [SerializeField] weaponflame weaponDB;
     //生成時に渡される発射方向
-    public void SetTargetPosition(Vector3 vector3, int playernumber)
+    public void SetTargetPosition(Vector3 vector3, int playernumber,int ID)
     {
-        target = vector3;
+        //各種弾のステータスを設定
+        damage = weaponDB.Equipment[ID].damage;
+        //lifetime = weaponDB.Equipment[ID].lifetime;
+        Invoke("Lifelimit", weaponDB.Equipment[ID].lifetime);
+
         playernum = playernumber;
+
+        target = vector3;
+        //AddForceでtargetに向かって飛ぶ
+
+        //弾の初速を設定
+        Rigidbody = this.GetComponent<Rigidbody>();
+        Rigidbody.AddForce(target.normalized * weaponDB.Equipment[ID].speed);
     }
 
     //着弾時に爆発して消える
@@ -39,8 +41,15 @@ public class bulletMove : MonoBehaviour
                 idamage.AddDamage(damage);
             }
         }
-        var tmp = Instantiate(fire, this.transform);
-        tmp.transform.SetParent(effectmother.transform);
+        //着弾のエフェクトはなんかバグの温床なので一旦オミット
+        //var tmp = Instantiate(fire, this.transform);
+        //fire.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+        //fireEffect.SendEvent("OnPlay");
+        //tmp.transform.SetParent(effectmother.transform);//ここでなんかエラーでるけどなんで？
+        Destroy(this.gameObject);
+    }
+    private void Lifelimit()
+    {
         Destroy(this.gameObject);
     }
 }

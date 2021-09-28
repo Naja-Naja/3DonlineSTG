@@ -5,6 +5,8 @@ using UnityEngine;
 public class WeaponTimeManager : MonoBehaviour
 {
     public weapon weapon;
+
+    //リロードタイマー
     public void reload(float reloadtime)
     {
         Debug.Log("coroutinestart");
@@ -14,5 +16,18 @@ public class WeaponTimeManager : MonoBehaviour
     {
         yield return new WaitForSeconds(reloadtime);
         weapon.reloading = false;
+        weapon.RuntimeNumberofBullet = weapon.numberofBullet;
+    }
+
+
+    //発射間隔タイマー
+    public void nextbullet(float fireRate)
+    {
+        StartCoroutine("firerateCoroutine", fireRate);
+    }
+    IEnumerator firerateCoroutine(float fireRate)
+    {
+        yield return new WaitForSeconds(fireRate);
+        weapon.readyNextBullet = true;
     }
 }
