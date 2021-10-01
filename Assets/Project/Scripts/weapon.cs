@@ -16,7 +16,7 @@ public class weapon : ScriptableObject
     public float damage = 10;
     public float speed = 2500;
     public float lifetime = 10;
-    public bool reloadabe = true;
+    //public bool reloadable = true;
     public bool reloading = false; 
     public float reloadtime = 1;
     public float fireRate;
@@ -26,11 +26,11 @@ public class weapon : ScriptableObject
     [System.NonSerialized]
     public float RuntimeNumberofBullet = 0;
     public bool passiveWeapon = false;
-    public float changetime;
-    public bool pargable = false;
-    [System.NonSerialized]
-    public bool parged = false;
-    public float weaponweight = 0;
+    //public float changetime;
+    //public bool pargable = false;
+    //[System.NonSerialized]
+    //public bool parged = false;
+    //public float weaponweight = 0;
     public void init()
     {
         reloading = false;
