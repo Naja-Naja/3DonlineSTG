@@ -21,6 +21,7 @@ public class PlayerDamage : MonoBehaviourPunCallbacks, Idamage
     public void AddDamage(float damage)
     {
         HP.RuntimeValue = HP.RuntimeValue - damage;
+        //そのうちダメージを引数に受けてエフェクト変えたいな
         photonView.RPC(nameof(Hit), RpcTarget.All);
         if (HP.RuntimeValue <= 0)
         {

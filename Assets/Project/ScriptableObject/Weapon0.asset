@@ -17,15 +17,11 @@ MonoBehaviour:
   icon: {fileID: 0}
   weaponTimeManager: {fileID: 2383532073713132308, guid: baac62bd0737b5b4a87dee29b272fe08, type: 3}
   bullet: {fileID: 7590159455778916453, guid: 530e1ad9e61336d42bfcb21d1cee4a2a, type: 3}
-  damage: 10
-  speed: 2500
+  damage: 50
+  speed: 5000
   lifetime: 2
-  reloadabe: 1
   reloading: 0
   reloadtime: 5
   fireRate: 0.2
   numberofBullet: 2
   passiveWeapon: 0
-  changetime: 1
-  pargable: 0
-  weaponweight: 0

@@ -12,6 +12,7 @@ public class PlayerStatus : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
+            //gameObject.layer = LayerMask.NameToLayer("Ignore RayCast");
             HP.init();
             EN.init();
         }

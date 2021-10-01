@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4838731856229113891}
   - component: {fileID: 4838731856229113890}
   - component: {fileID: 4838731856229113889}
+  - component: {fileID: -3735344963019075435}
   - component: {fileID: 4838731856229113894}
   - component: {fileID: 3666419347424552052}
   - component: {fileID: 3513005058476173379}
@@ -102,7 +103,7 @@ BoxCollider:
   m_GameObject: {fileID: 4838731856229113888}
   m_Material: {fileID: 13400000, guid: 851bcc48c897a774b8d561356bed1b83, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -122,6 +123,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &-3735344963019075435
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4838731856229113888}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.2991343
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.14956713, z: 0}
 --- !u!114 &4838731856229113894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,6 +598,8 @@ MonoBehaviour:
   fire: {fileID: 4838731856386982097}
   weapon: {fileID: 11400000, guid: b03aac835ed1f6e48be0a99bc61ecf90, type: 2}
   weaponflame: {fileID: 11400000, guid: d65ec9cf7f6be5f4fbc4414acd316dc5, type: 2}
+  testtransform: {fileID: 0}
+  test: 0100000001000000
 --- !u!114 &4046398436104615117
 MonoBehaviour:
   m_ObjectHideFlags: 0

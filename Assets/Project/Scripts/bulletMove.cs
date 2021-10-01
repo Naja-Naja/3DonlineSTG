@@ -8,7 +8,7 @@ public class bulletMove : MonoBehaviour
     Vector3 target;
     private int playernum = 0;
     public float damage = 50;
-    float lifetime = 0;
+    //float lifetime = 0;
     [SerializeField] weaponflame weaponDB;
     //生成時に渡される発射方向
     public void SetTargetPosition(Vector3 vector3, int playernumber,int ID)
@@ -16,7 +16,8 @@ public class bulletMove : MonoBehaviour
         //各種弾のステータスを設定
         damage = weaponDB.Equipment[ID].damage;
         //lifetime = weaponDB.Equipment[ID].lifetime;
-        Invoke("Lifelimit", weaponDB.Equipment[ID].lifetime);
+        Destroy(this.gameObject, weaponDB.Equipment[ID].lifetime);
+        //Invoke("Lifelimit", weaponDB.Equipment[ID].lifetime);
 
         playernum = playernumber;
 
@@ -35,10 +36,11 @@ public class bulletMove : MonoBehaviour
         var idamage = obj.GetComponent<Idamage>();
         if (idamage != null)
         {
-            if (playernum == idamage.GetPlayerNum()) { }
+            if (playernum == idamage.GetPlayerNum()) { return; }
             else
             {
                 idamage.AddDamage(damage);
+                
             }
         }
         //着弾のエフェクトはなんかバグの温床なので一旦オミット
@@ -48,8 +50,8 @@ public class bulletMove : MonoBehaviour
         //tmp.transform.SetParent(effectmother.transform);//ここでなんかエラーでるけどなんで？
         Destroy(this.gameObject);
     }
-    private void Lifelimit()
-    {
-        Destroy(this.gameObject);
-    }
+    //private void Lifelimit()
+    //{
+    //    Destroy(this.gameObject);
+    //}
 }
