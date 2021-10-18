@@ -43,6 +43,8 @@ MonoBehaviour:
   - shot
   - Death
   - Hit
+  - HomingshotRPC
+  - shotRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

@@ -30,4 +30,21 @@ public class WeaponTimeManager : MonoBehaviour
         yield return new WaitForSeconds(fireRate);
         weapon.readyNextBullet = true;
     }
+
+    //ロックオンタイマー
+    public void LockOnTimer(float Locktime)
+    {
+        Debug.Log("coroutinestart");
+        StartCoroutine("LockOnCoroutine", Locktime);
+    }
+    public void LockOnTimerStop()
+    {
+        Debug.Log("coroutinestop");
+        StopCoroutine("LockOnCoroutine");
+    }
+    IEnumerator LockOnCoroutine(float LockTime)
+    {
+        yield return new WaitForSeconds(LockTime);
+        weapon.readyNextBullet = true;
+    }
 }

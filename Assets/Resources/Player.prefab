@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 1174530027234824368}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: {fileID: 11400000, guid: 76018c0f0fa43e34db709ff554599e44, type: 2}
   EN: {fileID: 11400000, guid: d7b1d3bc7bee243488902427f84e66b6, type: 2}
+  playernum: 0
 --- !u!114 &1174530027234824368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,10 +597,8 @@ MonoBehaviour:
   bullet: {fileID: 7590159455778916453, guid: 530e1ad9e61336d42bfcb21d1cee4a2a, type: 3}
   cameraobj: {fileID: 0}
   fire: {fileID: 4838731856386982097}
-  weapon: {fileID: 11400000, guid: b03aac835ed1f6e48be0a99bc61ecf90, type: 2}
   weaponflame: {fileID: 11400000, guid: d65ec9cf7f6be5f4fbc4414acd316dc5, type: 2}
-  testtransform: {fileID: 0}
-  test: 0100000001000000
+  cube: {fileID: 0}
 --- !u!114 &4046398436104615117
 MonoBehaviour:
   m_ObjectHideFlags: 0

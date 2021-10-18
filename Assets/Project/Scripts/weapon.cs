@@ -17,7 +17,7 @@ public class weapon : ScriptableObject
     public float speed = 2500;
     public float lifetime = 10;
     //public bool reloadable = true;
-    public bool reloading = false; 
+    public bool reloading = false;
     public float reloadtime = 1;
     public float fireRate;
     [System.NonSerialized]
@@ -26,6 +26,12 @@ public class weapon : ScriptableObject
     [System.NonSerialized]
     public float RuntimeNumberofBullet = 0;
     public bool passiveWeapon = false;
+    public bool Homing = false;
+    [System.NonSerialized]
+    public Transform lockOnTarget;
+    [System.NonSerialized]
+    public bool targeting = false;
+    public float locktime = 1;
     //public float changetime;
     //public bool pargable = false;
     //[System.NonSerialized]
@@ -34,7 +40,7 @@ public class weapon : ScriptableObject
     public void init()
     {
         reloading = false;
-        TimeManager=Instantiate(weaponTimeManager).GetComponent<WeaponTimeManager>();
+        TimeManager = Instantiate(weaponTimeManager).GetComponent<WeaponTimeManager>();
         TimeManager.weapon = this;
         if (passiveWeapon == true)
         {
@@ -44,16 +50,20 @@ public class weapon : ScriptableObject
         {
             RuntimeNumberofBullet = numberofBullet;
         }
+        if (Homing)
+        {
+            readyNextBullet = false;
+        }
     }
     public GameObject Shot()
     {
         Debug.Log("shotcall");
         //éÀåÇÇ™Ç≈Ç´Ç»Ç¢èîÅXÇÃèåè
         if (reloading)
-        {    
+        {
             return null;
         }
-        if (readyNextBullet==false)
+        if (readyNextBullet == false)
         {
             return null;
         }
@@ -71,5 +81,36 @@ public class weapon : ScriptableObject
         //íeÇï‘Ç∑
         Debug.Log("shot!!");
         return bullet;
+    }
+    public void Targetting(Transform targetposition = null)
+    {
+        if (targetposition == null)
+        {
+            StopTargeting();
+        }
+        //else if (targetposition != lockOnTarget && targetposition != null)
+        //{
+        //    StopTargeting();
+        //}
+        else if (targeting == true) { }
+        else
+        {
+            lockOnTarget = targetposition;
+            TimeManager.LockOnTimer(locktime);
+            Debug.Log(targetposition.gameObject);
+        }
+    }
+    public void StopTargeting()
+    {
+        //readyNextBullet = false;
+        //lockOnTarget = null;
+        //TimeManager.LockOnTimerStop();
+        if (readyNextBullet == true) { return; }
+        else
+        {
+            readyNextBullet = false;
+            lockOnTarget = null;
+            TimeManager.LockOnTimerStop();
+        }
     }
 }

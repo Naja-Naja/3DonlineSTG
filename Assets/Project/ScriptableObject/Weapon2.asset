@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c3bcc9f0f6ff1d4d885a583620af434, type: 3}
-  m_Name: Weapon1
+  m_Name: Weapon2
   m_EditorClassIdentifier: 
-  weaponID: 1
-  Name: GatlimgGun
+  weaponID: 2
+  Name: Homing
   icon: {fileID: 0}
   weaponTimeManager: {fileID: 2383532073713132308, guid: baac62bd0737b5b4a87dee29b272fe08, type: 3}
-  bullet: {fileID: 7590159455778916453, guid: 530e1ad9e61336d42bfcb21d1cee4a2a, type: 3}
-  damage: 10
-  speed: 3000
-  lifetime: 1
+  bullet: {fileID: 4746149637237331745, guid: bfcd9b4c069056a4fbe47364e59c6717, type: 3}
+  damage: 25
+  speed: 2500
+  lifetime: 10
   reloading: 0
-  reloadtime: 0.5
-  fireRate: 0.1
-  numberofBullet: 50
+  reloadtime: 3
+  fireRate: 0
+  numberofBullet: 1
   passiveWeapon: 0
-  Homing: 0
-  locktime: 1
+  Homing: 1
+  locktime: 2
