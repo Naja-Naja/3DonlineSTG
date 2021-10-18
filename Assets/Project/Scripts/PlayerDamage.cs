@@ -15,12 +15,16 @@ public class PlayerDamage : MonoBehaviourPunCallbacks, Idamage
     {
         //hitobj.SetActive(true);
         //hit.SendMessage("OnStop");
-        playernum = PhotonNetwork.LocalPlayer.ActorNumber;
+        playernum = photonView.OwnerActorNr;
         //hit = hitobj.GetComponent<VisualEffect>();
     }
     public void AddDamage(float damage)
     {
-        HP.RuntimeValue = HP.RuntimeValue - damage;
+        //被弾したのが自分であればダメージを受ける
+        if (photonView.IsMine)
+        {
+            HP.RuntimeValue = HP.RuntimeValue - damage;
+        }
         //そのうちダメージを引数に受けてエフェクト変えたいな
         photonView.RPC(nameof(Hit), RpcTarget.All);
         if (HP.RuntimeValue <= 0)

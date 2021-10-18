@@ -40,15 +40,20 @@ public class bulletMove : MonoBehaviour
             else
             {
                 idamage.AddDamage(damage);
-                
+                Destroy(this.gameObject);
             }
         }
+
+
+        //壁にぶつかって弾が消える処理を書く
+
+
         //着弾のエフェクトはなんかバグの温床なので一旦オミット
         //var tmp = Instantiate(fire, this.transform);
         //fire.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
         //fireEffect.SendEvent("OnPlay");
         //tmp.transform.SetParent(effectmother.transform);//ここでなんかエラーでるけどなんで？
-        Destroy(this.gameObject);
+        
     }
     //private void Lifelimit()
     //{
